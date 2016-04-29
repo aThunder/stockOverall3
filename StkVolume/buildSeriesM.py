@@ -124,7 +124,7 @@ class QueryData():
             self.dfOverallMktSet = pd.read_sql_query("SELECT SYMBOL,DATE,CLOSE,VOL "
                                                      "FROM (SELECT * FROM SymbolsDataDaily "
                                                      "WHERE SYMBOL IN ('{0}') "
-                                                     "AND DATE <= '{1} "
+                                                     "AND DATE <= '{1}' "
                                                      "ORDER BY DATE DESC) "
                                                      "ORDER BY DATE ASC "
                                                      " ".format(self.symbolMkt,endDate),
@@ -133,7 +133,7 @@ class QueryData():
             test3 = self.dfOverallMktSet['date'][1]
             self.countRowsOverallMktSet = self.dfOverallMktSet['date'].count()
             print("Overall Days Count: ", self.countRowsOverallMktSet)
-            print("YES")
+            # print("YES")
             status2 = True
             return status2
         except:

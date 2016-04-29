@@ -250,7 +250,7 @@ class VolStkToMktRatios(Settings):
 
         print("xxxx: ",self.daysToReportRatiosAsMinus-1)
         for i in self.dfFullSet['close'][self.daysToReportRatiosAsMinus - 1:].diff():
-            print("i: ", i)
+            # print("i: ", i)
 
             if i > 0 and counter > 0:
                 self.upVOV.append(self.dfFullSet['IndivtoMktVol'][counter])
@@ -307,7 +307,7 @@ def main(choice,symbol,daysAvailable,endDate):
     elif choice == 2:
         choice2(symbol,daysAvailable,dfFullSet)
     elif choice == 3:
-        choice3(symbol,daysAvailable,dfFullSet)
+        choice3(symbol,daysAvailable,dfFullSet,endDate)
 
 def choice1(symbol,dfFullSet):
     a = Settings(symbol, dfFullSet)
@@ -337,10 +337,10 @@ def choice2(symbol,daysAvailable,dfFullSet):
     else:
         choice2(symbol,daysAvailable,dfFullSet)
 
-def choice3(symbol,daysAvailable,dfFullSet):
+def choice3(symbol,daysAvailable,dfFullSet,endDate):
     a = Settings(symbol,dfFullSet)
     import buildSeriesM
-    dfOverallMktSet = buildSeriesM.overallMkt(symbol)
+    dfOverallMktSet = buildSeriesM.overallMkt(symbol,endDate)
     ratios1 = VolStkToMktRatios(symbol,dfFullSet)
     ratios1.specifyDays()
     ratios1.vsOverallVolume(dfOverallMktSet)
